@@ -1,0 +1,24 @@
+{%load static%}
+<nav id="navbar" class="navbar" >
+        <ul>
+         <li><a href="{% url 'index' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+        
+        {% if user.is_authenticated %}
+
+        <li><a href="{% url 'helpdesk' %}" class="nav-link scrollto"><i class="bx bx-scan"></i><span>Tickets</span></a></li>
+        <li><a href="" class="nav-link scrollto"></i><span>Welcome {{ user.username }}</span></a></li>
+        <li><a href="javascript:{document.getElementById('logout').submit()}" class="nav-link scrollto"><i class="bx bx-log-out"></i><span>Log Out</span></a>
+        <form action="{% url 'logout' %}" method="POST" id="logout">
+        {% csrf_token %}
+        <input type="hidden">
+        </form>
+
+        </li>
+        {% else %}
+
+        <li><a href="{% url 'login' %}" class="nav-link scrollto"><i class="bx bx-log-in"></i> <span>Login</span></a></li>
+
+        {% endif %}
+      </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
